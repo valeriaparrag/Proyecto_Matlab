@@ -43,8 +43,12 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    Esta función ajusta un modelo lineal generalizado, calculando la probabilidad de que la respuesta sea 1 en función de las variables predictorias. 
    En este caso, haciendo uso de 'Distribution' y 'binomial' este modelo lineal se convierte en una regresión logística, cuya salida es un objeto modelo (variable `mdl_log`) que tiene coeficientes, estadísticas y un método predict para estimar probabilidades. 
 
+   **Variables utilizadas en el modelo:** Al consultar fuentes teóricas citadas a continuación, se encontró que que las variables que mayor influencia tienen en la formación de planetas son la masa estelar, la metalicidad y la luminosidad. 
+    - **Masa estelar:** La ocurrencia de planetas gigantes aumenta con la *masa estelar*, pasando aproximadamente de 3.5% para estrellas de baja masa a 14% para estrellas de mayor masa. [2] 
+    - **Metalicidad:** Fischer y Valenti demostraron que las estrellas ricas en metales presentan una probabilidad mucho mayor de albergar planetas gigantes. Este resultado ha sido confirmado repetidamente. [3] 
+    - **Luminosidad:** La luminosidad también afecta la estructura térmica del disco protoplanetario y las condiciones bajo las cuales se forman los planetas. [4] 
 
-2. Árbol de decisión - `fitctree` 
+3. Árbol de decisión - `fitctree` 
    Es un modelo que divide los datos en ramas según reglas simples.
    **Funcionamiento:** 
    Construye un árbol donde cada nodo representa una condición sobre una variable, las hojas del árbol representan la clasificación final (planetas sí/no). 
@@ -52,11 +56,11 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    fitctree corresponde a la abreviación de Fit Classification Tree. 
    Esta función entrena un árbol de decisión para clasificación, dividiendo los datos en ramas según condiciones sobre las variables predictoras, hasta llegar a hojas que representan la clase final. 
    En este caso, la salida de la función es un objeto árbol (variable `mdl_tree`) que se puede visualizar con
-   `` Matlab
+   ``` Matlab
    view(mdl_tree,'Mode','graph')
-   ``
+   ```
 
-3. k-Nearest Neighbors (KNN) - `fitcknn`
+4. k-Nearest Neighbors (KNN) - `fitcknn`
    Es un modelo basado en la similitud entre observaciones. 
    **Funcionamiento:** 
    Para clasificar una estrella, busca las k estrellas más cercanas en el espacio de variables predictoras, y clasifica según la mayoría de esas vecinas (ejemplo: si 4 de 5 vecinas tienen planetas, se predice “con planetas”). 
@@ -65,7 +69,7 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    Esta función entrena un modelo de vecinos más cercanos; para clasificar un punto nuevo, busca los k puntos más cercanos en el conjunto de entrenamiento y asigna la clase mayoritaria. 
    En este caso, la salida de la función es un objeto KNN (variable `mdl_knn`) que usa predict para clasificar nuevos datos. 
 
-4. Support Vector Machines (SVM) - `fitcsvm`
+5. Support Vector Machines (SVM) - `fitcsvm`
    Es un modelo que busca el “mejor hiperplano” que separa las dos clases.
    **Funcionamiento:** 
    Encuentra una frontera que maximiza la distancia entre las clases (estrella con planetas vs. sin planetas). A continuación, haciendo uso de kernels maneja separaciones no lineales.
@@ -74,15 +78,52 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    Esta función entrena un SVM para clasificación binaria; encuentra el hiperplano que mejor separa las dos clases, y con `KernelFunction`,`rbf`, permite separar datos no lineales usando un kernel radial.
    En este caso, la salida de la función es un objeto SVM (variable `mdl_svm`) que clasifica nuevos datos con predict.
 
-**RETORNO DE LA FUNCIÓN: ** en la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`. 
-`` Matlab
+**RETORNO DE LA FUNCIÓN: ** en la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`, la cual se calcula como un valor de precisión entre 0 y 1. 
+``` Matlab
 resultados = clasificacion_binaria(T, y);
-``
+```
 
+### 3. Regresión: cantidad estimada de planetas
 
-### 
+1. Regresión lineal múltiple - `fitlm`
+
+2. Regresión polinómica
+
+3. Random Forest Regressor - `TreeBagger`
+
+4. Redes neuronales - `fitnet`
 
 ## RESULTADOS
+
+### 1. Carga de datos
+
+``` Matlab
+       NombreEstrella       PlanetasFlag    NumPlanetas
+    ____________________    ____________    ___________
+
+    "3 Ursae Majoris A"        {'N'}             0     
+    "HD 78366"                 {'N'}             0     
+    "13 Ursae Majoris A"       {'N'}             0     
+    "HD 84737"                 {'N'}             0     
+    "36 Ursae Majoris A"       {'N'}             0     
+    "HD 91324"                 {'N'}             0     
+    "Groombridge 1830"         {'N'}             0     
+    "Eta Corvi"                {'N'}             0     
+    "Chara"                    {'N'}             0     
+    "HD 114613"                {'Y'}             1
+```
+
+### 2. Clasificación binaria
+``` Matlab
+Comparación de precisión entre modelos:
+            Modelo             Accuracy
+    _______________________    ________
+
+    {'Regresión Logística'}    0.79878 
+    {'Árbol de Decisión'  }    0.89024 
+    {'KNN'                }    0.79878 
+    {'SVM'                }    0.81707
+```
 
 ## REFLEXIÓN SOBRE IA
 ### Implementación de la IA en el proyecto
