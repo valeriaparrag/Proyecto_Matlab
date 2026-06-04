@@ -28,9 +28,53 @@ En esta sección se aplicaron y compararon 4 métodos distintos para predecir de
 Posteriormente, se realizó una comparación con los datos de "Planets Flag" de la base de datos.
 
 1. Regresión logística - `fitglm`
-2. Árbol de decisión - `fitctree`
-3. k-Nearest Neighbors (KNN) - `fitcknn`
+   Es un modelo estadístico que estima la probabilidad de que ocurra un evento binario en el que 1 es sí y 0 es no. 
+   **Funcionamiento:** 
+   Usa una función logística (sigmoide) para transformar una combinación lineal de variables predictoras en una probabilidad entre 0 y 1. Si la probabilidad es mayor a un umbral (0.5), clasifica como “1” (estrella con planetas), si no, clasifica como "0" (estrella sin planetas). 
+   **Función** `fitglm` **:** 
+   fitglm corresponde a la abreviación de Fit Generalized Linear Model. 
+   Esta función ajusta un modelo lineal generalizado, calculando la probabilidad de que la respuesta sea 1 en función de las variables predictorias. 
+   En este caso, haciendo uso de 'Distribution' y 'binomial' este modelo lineal se convierte en una regresión logística, cuya salida es un objeto modelo (variable `mdl_log`) que tiene coeficientes, estadísticas y un método predict para estimar probabilidades. 
+
+
+2. Árbol de decisión - `fitctree` 
+   Es un modelo que divide los datos en ramas según reglas simples.
+   **Funcionamiento:** 
+   Construye un árbol donde cada nodo representa una condición sobre una variable, las hojas del árbol representan la clasificación final (planetas sí/no). 
+   **Función** `fitctree` **:** 
+   fitctree corresponde a la abreviación de Fit Classification Tree. 
+   Esta función entrena un árbol de decisión para clasificación, dividiendo los datos en ramas según condiciones sobre las variables predictoras, hasta llegar a hojas que representan la clase final. 
+   En este caso, la salida de la función es un objeto árbol (mdl_tree) que se puede visualizar con
+   `` Matlab
+   view(mdl_tree,'Mode','graph')
+   ``
+
+4. k-Nearest Neighbors (KNN) - `fitcknn`
+   Es un modelo basado en la similitud entre observaciones. 
+   **Funcionamiento:** 
+   Para clasificar una estrella, busca las k estrellas más cercanas en el espacio de variables predictoras, y clasifica según la mayoría de esas vecinas (ejemplo: si 4 de 5 vecinas tienen planetas, se predice “con planetas”). 
+   **Función** `fitcknn` **:** 
+   fitcknn corresponde a la abreviación de Fit Classification k-Nearest Neighbors. 
+   Esta función entrena un modelo de vecinos más cercanos.
+
+Qué hace: Para clasificar un punto nuevo, busca los k puntos más cercanos en el conjunto de entrenamiento y asigna la clase mayoritaria.
+
+Salida: Un objeto KNN (mdl_knn) que usa predict para clasificar nuevos datos.
+
+   
+
 4. Support Vector Machines (SVM) - `fitcsvm`
+Qué es: Un modelo que busca el “mejor hiperplano” que separa las dos clases.
+
+Cómo funciona:
+
+Encuentra una frontera que maximiza la distancia entre las clases (estrella con planetas vs. sin planetas).
+
+Con kernels (como el radial rbf), puede manejar separaciones no lineales.
+
+Ventaja: Muy potente para datos complejos y no lineales.
+
+Limitación: Menos interpretable y puede ser más pesado computacionalmente.
 
 ### 
 
