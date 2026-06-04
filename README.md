@@ -12,16 +12,23 @@ La implementación se realiza en MATLAB, integrando importación y limpieza de d
 
 ## JUSTIFICACIÓN
 
+
 ## DESARROLLO: SECCIONES DEL PROYECTO
 ### Estructura del proyecto
 Este proyecto se encuentra en una carpeta llamada `ProyectoFinal`. Dentro de ella, están los siguientes archivos:
-1. `funcion_principal.m`: Esta función es el "main" del proyecto, en ella se llaman todas las funciones secundarias para que corran en el orden en el que se desean obtener los resultados; presenta la estructura general del proyecto y realiza los análisis comparativos entre los modelos implementados en el proyecto.
-2. `cargar_datos.m`:
-3. `clasificacion_binaria.m`:
+1. `funcion_principal.m`: Esta función es el "main" del proyecto, en ella se llaman todas las funciones secundarias para que corran en el orden en el que se desean obtener los resultados; presenta la estructura general del proyecto y realiza los análisis comparativos entre los modelos implementados en el proyecto. 
+2. `cargar_datos.m`: Función para realizar la carga de datos del archivo `datos_estrellas.xlsx` a dos matrices en Matlab, con las cuales se realizaría el posterior procesamiento de datos. 
+3. `clasificacion_binaria.m`: Función en la que se aplican los 4 métodos de clasificación binaria con los cuales se determinaría si una estrella tiene o no planeta(s). 
 4. `regresion_planetas.m`:
-5. `graficar_HR`:
+5. `graficar_HR.m`:
+6. `datos_estrellas.xlsx`: Archivo de Excel con la base de datos completa descargada.
 
 ### 1. Carga de datos
+En la primera sección, denominada carga de datos, se implementó la función `cargar_datos.m` para subir el archivo de Excel que contiene la totalidad de los datos descargados de la base de datos NASA Exoplanet Archive [1] (la cual se encuentra en referencias), de manera que se crearan dos matrices: 
+1. `T`: La matriz que contiene todos los datos que serían utilizados para los posteriores análisis y regresiones. 
+   'Hostname','StMass','StMet','StLum','StTeff','StSpectype','SyVmag','SyBvmag','SyPlanetsFlag','SyPnum'
+2. `MatrizValidacion`: La matriz que contiene únicamente 3 columnas, con las cuales se hará la validación de la precisión de los datos obtenidos con las clasificaciones y regresiones implementadas.
+   'Hostname', 'SyPlanetsFlag', 'SyPnum'
 
 ### 2. Clasificación binaria
 En esta sección se aplicaron y compararon 4 métodos distintos para predecir de forma binaria si una estrella tiene o no planetas orbitantes, de manera que obtener un 1 representara para cada estrella la presencia de uno o más planetas orbitantes, y obtener un 0 representara la ausencia de planetas orbitando esa estrella. 
@@ -44,37 +51,34 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    **Función** `fitctree` **:** 
    fitctree corresponde a la abreviación de Fit Classification Tree. 
    Esta función entrena un árbol de decisión para clasificación, dividiendo los datos en ramas según condiciones sobre las variables predictoras, hasta llegar a hojas que representan la clase final. 
-   En este caso, la salida de la función es un objeto árbol (mdl_tree) que se puede visualizar con
+   En este caso, la salida de la función es un objeto árbol (variable `mdl_tree`) que se puede visualizar con
    `` Matlab
    view(mdl_tree,'Mode','graph')
    ``
 
-4. k-Nearest Neighbors (KNN) - `fitcknn`
+3. k-Nearest Neighbors (KNN) - `fitcknn`
    Es un modelo basado en la similitud entre observaciones. 
    **Funcionamiento:** 
    Para clasificar una estrella, busca las k estrellas más cercanas en el espacio de variables predictoras, y clasifica según la mayoría de esas vecinas (ejemplo: si 4 de 5 vecinas tienen planetas, se predice “con planetas”). 
    **Función** `fitcknn` **:** 
    fitcknn corresponde a la abreviación de Fit Classification k-Nearest Neighbors. 
-   Esta función entrena un modelo de vecinos más cercanos.
-
-Qué hace: Para clasificar un punto nuevo, busca los k puntos más cercanos en el conjunto de entrenamiento y asigna la clase mayoritaria.
-
-Salida: Un objeto KNN (mdl_knn) que usa predict para clasificar nuevos datos.
-
-   
+   Esta función entrena un modelo de vecinos más cercanos; para clasificar un punto nuevo, busca los k puntos más cercanos en el conjunto de entrenamiento y asigna la clase mayoritaria. 
+   En este caso, la salida de la función es un objeto KNN (variable `mdl_knn`) que usa predict para clasificar nuevos datos. 
 
 4. Support Vector Machines (SVM) - `fitcsvm`
-Qué es: Un modelo que busca el “mejor hiperplano” que separa las dos clases.
+   Es un modelo que busca el “mejor hiperplano” que separa las dos clases.
+   **Funcionamiento:** 
+   Encuentra una frontera que maximiza la distancia entre las clases (estrella con planetas vs. sin planetas). A continuación, haciendo uso de kernels maneja separaciones no lineales.
+   **Función** `fitcsvm` **:** 
+   fitcsvm corresponde a la abreviación de Fit Classification Support Vector Machine. 
+   Esta función entrena un SVM para clasificación binaria; encuentra el hiperplano que mejor separa las dos clases, y con `KernelFunction`,`rbf`, permite separar datos no lineales usando un kernel radial.
+   En este caso, la salida de la función es un objeto SVM (variable `mdl_svm`) que clasifica nuevos datos con predict.
 
-Cómo funciona:
+**RETORNO DE LA FUNCIÓN: ** en la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`. 
+`` Matlab
+resultados = clasificacion_binaria(T, y);
+``
 
-Encuentra una frontera que maximiza la distancia entre las clases (estrella con planetas vs. sin planetas).
-
-Con kernels (como el radial rbf), puede manejar separaciones no lineales.
-
-Ventaja: Muy potente para datos complejos y no lineales.
-
-Limitación: Menos interpretable y puede ser más pesado computacionalmente.
 
 ### 
 
