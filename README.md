@@ -34,7 +34,7 @@ En la primera sección, denominada carga de datos, se implementó la función `c
 En esta sección se aplicaron y compararon 4 métodos distintos para predecir de forma binaria si una estrella tiene o no planetas orbitantes, de manera que obtener un 1 representara para cada estrella la presencia de uno o más planetas orbitantes, y obtener un 0 representara la ausencia de planetas orbitando esa estrella. 
 Posteriormente, se realizó una comparación con los datos de "Planets Flag" de la base de datos.
 
-1. Regresión logística - `fitglm`
+1. Regresión logística - `fitglm` 
    Es un modelo estadístico que estima la probabilidad de que ocurra un evento binario en el que 1 es sí y 0 es no. 
    **Funcionamiento:** 
    Usa una función logística (sigmoide) para transformar una combinación lineal de variables predictoras en una probabilidad entre 0 y 1. Si la probabilidad es mayor a un umbral (0.5), clasifica como “1” (estrella con planetas), si no, clasifica como "0" (estrella sin planetas). 
@@ -48,7 +48,7 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
     - **Metalicidad:** Fischer y Valenti demostraron que las estrellas ricas en metales presentan una probabilidad mucho mayor de albergar planetas gigantes. Este resultado ha sido confirmado repetidamente. [3] 
     - **Luminosidad:** La luminosidad también afecta la estructura térmica del disco protoplanetario y las condiciones bajo las cuales se forman los planetas. [4] 
 
-3. Árbol de decisión - `fitctree` 
+2. Árbol de decisión - `fitctree` 
    Es un modelo que divide los datos en ramas según reglas simples.
    **Funcionamiento:** 
    Construye un árbol donde cada nodo representa una condición sobre una variable, las hojas del árbol representan la clasificación final (planetas sí/no). 
@@ -60,7 +60,7 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    view(mdl_tree,'Mode','graph')
    ```
 
-4. k-Nearest Neighbors (KNN) - `fitcknn`
+3. k-Nearest Neighbors (KNN) - `fitcknn` 
    Es un modelo basado en la similitud entre observaciones. 
    **Funcionamiento:** 
    Para clasificar una estrella, busca las k estrellas más cercanas en el espacio de variables predictoras, y clasifica según la mayoría de esas vecinas (ejemplo: si 4 de 5 vecinas tienen planetas, se predice “con planetas”). 
@@ -69,7 +69,7 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    Esta función entrena un modelo de vecinos más cercanos; para clasificar un punto nuevo, busca los k puntos más cercanos en el conjunto de entrenamiento y asigna la clase mayoritaria. 
    En este caso, la salida de la función es un objeto KNN (variable `mdl_knn`) que usa predict para clasificar nuevos datos. 
 
-5. Support Vector Machines (SVM) - `fitcsvm`
+4. Support Vector Machines (SVM) - `fitcsvm` 
    Es un modelo que busca el “mejor hiperplano” que separa las dos clases.
    **Funcionamiento:** 
    Encuentra una frontera que maximiza la distancia entre las clases (estrella con planetas vs. sin planetas). A continuación, haciendo uso de kernels maneja separaciones no lineales.
