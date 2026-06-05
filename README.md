@@ -138,11 +138,13 @@ En esta sección, se generaron 3 diagramas para determinar y analizar las relaci
 1. Gráfico de barras: *Tasa de planetas por tipo espectral*
    Muestra qué tipos espectrales presentan mayor proporción de estrellas con planetas, en un diagrama cuyo eje x contiene los tipos espectrales y el eje y presenta la proporción de estrellas con planetas.
 2. Diagrama H&R: *Diagrama HR (coloreado por presencia de planetas)*
+   Diagrama que evidencia dónde se encuentras las estrellas según su luminosidad y temperatura.  
+   En este también se buscó diferenciar únicamente con colores, entre las estrellas que sí tenían planetas y las que no.
+4. Clustering: *Clusters de estrellas (k-means)*
    
-3. Clustering: *Clusters de estrellas (k-means)*
-
+   
 ### 5. DIAGRAMA HERTZSPRUNG-RUSSELL DE SISTEMAS PLANETARIOS
-
+   En este, se realizó un diagrama igual al segundo del análisis por tipo de estrella, pero que se caracteriza por tener únicamente las estrellas con sistemas planetarios, esto con el fin de determinar la cercanía entre ellas y notar si presentaban algún grupo en común.
 
 ## RESULTADOS
 
@@ -183,6 +185,10 @@ Se evidencia que la mayor precisión la obtuvo el árbol de decisión, debido a 
 Así mismo, el hecho de que no todos los modelos hayan obtenido la misma precisión demuestra que las relaciones entre masa, metalicidad y luminosidad no son exclusivamente lineales para las estrellas.  
 
 ### 3. Regresión: Cantidad estimada de planetas
+El primer resultado obtenido en la regresión, corresponde al modelo de la red neuronal, el cual arrojó el siguiente resultado después de ser entrenada: 
+
+![Red_Neuronal](figuras_funciones/redneuronal_entrenada.jpeg)
+
 Para la regresión, el resultado obtenido es una comparación de RMSE por el resultado obtenido en cada modelo.  
 
 ``` Matlab
@@ -195,30 +201,38 @@ Comparación de RMSE entre modelos de regresión:
     {'Random Forest'}    0.81631
     {'Red Neuronal' }     1.0594
 ```
+El RMSE determina el error con respecto al valor teórico (el obtenido de la base de datos), por lo cual, entre menor sea el error, más pertinente es el modelo.  
+En este caso, todos los errores son cercanos a 1, es decir que todos los modelos tuvieron un desfase de número de planetas superior a la cantidad de planetas que realmente tienen las estrellas. Este error se vio incrementado exponencialmente por la relación cuadrática que tiene el RMSE.  
+Con este modelo de error, fue posible determinar que Random Forest fue el modelo de regresión más preciso, con un error de 0.816. Sin embargo, los demás modelos no estuvieron muy lejos de este, lo cual evidencia que los modelos también son adecuados para encontrar el número de planetas de una estrella.
 
 ### 4. Análisis por tipo de estrella
 
 Figura 1 (barras de proporción de planetas por tipo espectral):
 Mostró que ciertos tipos (ej. G y K) tienen mayor proporción de estrellas con planetas.
+![Tasa_planetas_por_tipo](figuras_funciones/tasa_planetas_por_tipo.png)
 
 Figura 2 (HR diagram general):
 Visualizó todas las estrellas, coloreadas por presencia de planetas. Se observó concentración en la secuencia principal.
 TODAS LAS ESTRELLAS SE ENCUENTRAN EN LA SECUENCIA PRINCIPAL, NO SON GIGANTES NI SUPERGIGANTES, NI TAMPOCO ENANAS BLANCAS
 
+![diagrama_HR](figuras_funciones/diagrama_HR.png)
+
 Figura 3 (clusters con k-means):
 Agrupó estrellas por masa y luminosidad, mostrando que algunos clusters tienen más planetas, lo que sugiere patrones de formación.
 
-Conclusión: El análisis espectral confirmó que los tipos de estrella influyen en la probabilidad de tener planetas y que existen regiones del HR donde se concentran más.
+![clusters_estrellas](figuras_funciones/clusters_estrellas.png)
+
+Con base en todo lo anterior, se determina que el análisis espectral confirmó que los tipos de estrella influyen en la probabilidad de tener planetas y que existen regiones del HR donde se concentran más.
 
 ### 5. Diagrama H&R de las estrellas con planetas
 
 Figura (HR filtrado):
 Mostró únicamente las estrellas con planetas. Se observó que la mayoría se concentran en la secuencia principal y en tipos espectrales intermedios (G, K).
 
-Interpretación:
-Esto conecta directamente con la clasificación binaria y el análisis espectral: los modelos predicen bien porque efectivamente hay patrones físicos detrás.
+![diagramaHR_filtrado](figuras_funciones/diagramaHR_filtrado.png)
 
-Conclusión: El HR filtrado es la evidencia visual más clara de dónde se encuentran las estrellas con planetas, reforzando todo el pipeline del proyecto.
+Esto conecta directamente con la clasificación binaria y el análisis espectral; los modelos predicen bien porque efectivamente hay patrones físicos detrás.
+Con este diagrama, se determina que el HR filtrado es la evidencia visual más clara de dónde se encuentran las estrellas con planetas, ya que todas se encuentran en la secuencia principal.
 
 ### Vídeo de presentación del proyecto:
 
@@ -226,22 +240,17 @@ Conclusión: El HR filtrado es la evidencia visual más clara de dónde se encue
 ## REFLEXIÓN SOBRE IA
 ### Implementación de la IA en el proyecto
 
-
 ### Prompts utilizados con Copilot
 En el archivo titulado `prompts_Copilot.txt` se encuentran todos los prompts enviados a esta inteligencia artificial generativa con el objetivo de recibir ayuda para realizar los análisis, arreglar errores y resolver dudas en el proceso de desarrollo del proyecto, la implementación de las clasificaciones, regresiones y gráficas.
 
 ## CONCLUSIONES
-Integración de métodos computacionales: El proyecto logró combinar técnicas de clasificación, regresión y análisis espectral en MATLAB, lo que permitió abordar el problema de la inferencia de exoplanetas desde diferentes perspectivas complementarias.
+En resumen, con  el presente proyecto fue posible combinar técnicas de clasificación, regresión y análisis espectral en MATLAB, lo que permitió abordar el problema de la inferencia de exoplanetas desde diferentes perspectivas complementarias.
 
-Clasificación binaria: Se implementaron cuatro modelos (Regresión Logística, Árbol de Decisión, KNN y SVM) para identificar estrellas con planetas. La comparación de métricas mostró que algunos métodos ofrecen mayor precisión, evidenciando la importancia de evaluar distintos enfoques antes de seleccionar el más adecuado.
+En la clasificación binaria se implementaron cuatro modelos (Regresión Logística, Árbol de Decisión, KNN y SVM) para identificar estrellas con planetas. La comparación de métricas mostró que algunos métodos ofrecen mayor precisión, evidenciando la importancia de evaluar distintos enfoques antes de seleccionar el más adecuado.
 
-Regresión para estimación de planetas: El uso de modelos lineales, polinómicos, Random Forest y redes neuronales permitió aproximar el número de planetas por estrella. La comparación mediante RMSE demostró que los modelos no lineales capturan mejor las relaciones complejas entre las variables estelares y la cantidad de planetas.
+Posteriormente, en la regresión para la estimación del número de planetas, el uso de modelos lineales, polinómicos, Random Forest y redes neuronales permitió aproximar el número de planetas por estrella. La comparación mediante RMSE demostró que los modelos no lineales capturan mejor las relaciones complejas entre las variables estelares y la cantidad de planetas.
 
-Análisis por tipo espectral: Se evidenció que ciertos tipos de estrellas presentan mayor proporción de planetas, y el diagrama HR filtrado mostró tendencias claras en la distribución de estrellas con planetas, reforzando la conexión entre clasificación, regresión y análisis espectral.
-
-Visualización científica: Los diagramas HR y los gráficos comparativos facilitaron la interpretación de los resultados, mostrando patrones que no serían evidentes únicamente con valores numéricos.
-
-Valor académico y científico: El proyecto no solo fortaleció competencias en programación y análisis de datos, sino que también aportó una visión más sólida sobre cómo la computación aplicada puede apoyar la investigación astronómica, integrando estadística, aprendizaje automático y visualización.
+En el análisis por tipo espectral fue posible evidenciar que ciertos tipos de estrellas presentan mayor proporción de planetas, y el diagrama HR filtrado mostró tendencias claras en la distribución de estrellas con planetas, reforzando la conexión entre clasificación, regresión y análisis espectral. Así mismo, los diagramas HR y los gráficos comparativos facilitaron la interpretación de los resultados, mostrando patrones que no serían evidentes únicamente con valores numéricos.
 
 ## REFERENCIAS
 **BASE DE DATOS:**  
