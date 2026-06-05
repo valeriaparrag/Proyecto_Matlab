@@ -149,7 +149,8 @@ El modelo con menor RMSE es el que mejor aproxima la cantidad de planetas.
 
 ## RESULTADOS
 
-### 1. Carga de datos
+### 1. Carga de datos  
+Al realizar la carga de datos en Matlab, se imprimió con la función `display` una muestra de la tabla de datos obtenida para la matriz de resultados con la que se realizaron las posteriores comparaciones.
 
 ``` Matlab
        NombreEstrella       PlanetasFlag    NumPlanetas
@@ -168,6 +169,7 @@ El modelo con menor RMSE es el que mejor aproxima la cantidad de planetas.
 ```
 
 ### 2. Clasificación binaria
+A continuación se presenta la tabla que contiene en una columna los modelos y en la otra la precisión con respecto al modelo teórico de la bandera (sí/no) que representa la presencia de uno o más planetas orbitando una estrella. 
 
 ``` Matlab
 Comparación de precisión entre modelos:
@@ -180,7 +182,11 @@ Comparación de precisión entre modelos:
     {'SVM'                }    0.81707
 ```
 
-### Regresión: Cantidad estimada de planetas
+Se evidencia que la mayor precisión la obtuvo el árbol de decisión, debido a que tiene el valor de precisión más alto, correspondiente a 0.89 sobre 1. Es posible que este modelo haya tenido el mejor ajuste porque se caracteriza por sobreajustar los datos.  
+Así mismo, el hecho de que no todos los modelos hayan obtenido la misma precisión demuestra que las relaciones entre masa, metalicidad y luminosidad no son exclusivamente lineales para las estrellas.  
+
+### 3. Regresión: Cantidad estimada de planetas
+Para la regresión, el resultado obtenido es una comparación de RMSE por el resultado obtenido en cada modelo.  
 
 ``` Matlab
 Comparación de RMSE entre modelos de regresión:
@@ -192,6 +198,30 @@ Comparación de RMSE entre modelos de regresión:
     {'Random Forest'}    0.81631
     {'Red Neuronal' }     1.0594
 ```
+
+### 4. Análisis por tipo de estrella
+
+Figura 1 (barras de proporción de planetas por tipo espectral):
+Mostró que ciertos tipos (ej. G y K) tienen mayor proporción de estrellas con planetas.
+
+Figura 2 (HR diagram general):
+Visualizó todas las estrellas, coloreadas por presencia de planetas. Se observó concentración en la secuencia principal.
+TODAS LAS ESTRELLAS SE ENCUENTRAN EN LA SECUENCIA PRINCIPAL, NO SON GIGANTES NI SUPERGIGANTES, NI TAMPOCO ENANAS BLANCAS
+
+Figura 3 (clusters con k-means):
+Agrupó estrellas por masa y luminosidad, mostrando que algunos clusters tienen más planetas, lo que sugiere patrones de formación.
+
+Conclusión: El análisis espectral confirmó que los tipos de estrella influyen en la probabilidad de tener planetas y que existen regiones del HR donde se concentran más.
+
+### 5. Diagrama H&R de las estrellas con planetas
+
+Figura (HR filtrado):
+Mostró únicamente las estrellas con planetas. Se observó que la mayoría se concentran en la secuencia principal y en tipos espectrales intermedios (G, K).
+
+Interpretación:
+Esto conecta directamente con la clasificación binaria y el análisis espectral: los modelos predicen bien porque efectivamente hay patrones físicos detrás.
+
+Conclusión: El HR filtrado es la evidencia visual más clara de dónde se encuentran las estrellas con planetas, reforzando todo el pipeline del proyecto.
 
 ### Vídeo de presentación del proyecto:
 
