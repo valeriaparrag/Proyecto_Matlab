@@ -35,6 +35,7 @@ Este proyecto se encuentra en una carpeta llamada `ProyectoFinal`. Dentro de ell
 
 Archivos complementarios: 
 1. `script_resultante.pdf`: El script generado por Matlab al correr el código completo, con los displays de una muestra de los resultados obtenidos en cada función y las gráficas.
+2. `prompts_Copilot.txt`: Un archivo de texto que contiene los prompts que se utilizaron en la inteligencia artificial Copilot para resolver problemas presentados en el desarrollo del proyecto.
 
 ### 1. Carga de datos
 En la primera sección, denominada carga de datos, se implementó la función `cargar_datos.m` para subir el archivo de Excel que contiene la totalidad de los datos descargados de la base de datos NASA Exoplanet Archive [1] (la cual se encuentra en referencias), de manera que se crearan dos matrices:  
@@ -191,6 +192,9 @@ Comparación de RMSE entre modelos de regresión:
     {'Random Forest'}    0.81631
     {'Red Neuronal' }     1.0594
 ```
+
+### Vídeo de presentación del proyecto:
+
 
 ## REFLEXIÓN SOBRE IA
 ### Implementación de la IA en el proyecto
