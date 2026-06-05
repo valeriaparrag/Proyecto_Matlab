@@ -1,39 +1,33 @@
 # Cartografía Estelar de Exoplanetas: Inferencia y Visualización en MATLAB
 ## DESCRIPCIÓN DEL PROYECTO  
-Este proyecto aplica técnicas de procesamiento de datos, clasificación estadística y visualización científica para analizar un conjunto de estrellas de la base de datos NASA Exoplanet Archive. A partir de parámetros físicos como masa, metalicidad, luminosidad, amplitud radial y actividad cromosférica, se desarrolla un sistema de inferencia de presencia planetas dividido en dos partes:
+Este proyecto aplica técnicas de procesamiento de datos, clasificación estadística y visualización científica para analizar un conjunto de estrellas de la base de datos NASA Exoplanet Archive. A partir de parámetros físicos como masa, metalicidad, luminosidad, amplitud radial y actividad cromosférica, se desarrolla un sistema de inferencia de presencia planetas dividido en dos partes:  
 
-1. Clasificación binaria: Predicción de la presencia o ausencia de planetas mediante métodos estadísticos y de aprendizaje supervisado (regresión logística, árboles de decisión, SVM).
-2. Regresión: Estimación del número potencial de planetas asociados a cada estrella utilizando modelos de regresión lineal, polinómica y ensambles como Random Forest.
+1. Clasificación binaria: Predicción de la presencia o ausencia de planetas mediante métodos estadísticos y de aprendizaje supervisado (regresión logística, árboles de decisión, SVM, KNN).  
+2. Regresión: Estimación del número potencial de planetas asociados a cada estrella utilizando modelos de regresión lineal, polinómica y ensambles como Random Forest.  
 
-Posteriormente, se realiza un estudio de los tipos espectrales de estrellas, explorando la relación entre clase estelar y probabilidad de albergar sistemas planetarios. Además, se construyen diagramas de Hertzsprung-Russell (HR), tanto generales como filtrados para estrellas con planetas, con el fin de identificar las regiones del diagrama donde se concentran los sistemas planetarios con mayor frecuencia.
+Posteriormente, se realiza un estudio de los tipos espectrales de estrellas, explorando la relación entre clase estelar y probabilidad de albergar sistemas planetarios. Además, se construyen diagramas de Hertzsprung-Russell (HR), tanto generales como filtrados para estrellas con planetas, con el fin de identificar las regiones del diagrama donde se concentran los sistemas planetarios con mayor frecuencia.  
 
-El proyecto se implementa en Matlab, e integra importación y limpieza de datos, funciones modulares, visualizaciones 2D y 3D, clustering estadístico y dashboards interactivos. Por último, se realiza una reflexión crítica sobre el uso de herramientas de IA generativa (MATLAB Copilot) en el proceso de desarrollo.
+El proyecto se implementa en Matlab, e integra importación y limpieza de datos, funciones modulares, visualizaciones 2D y 3D, clustering estadístico y dashboards interactivos. Por último, se realiza una reflexión crítica sobre el uso de herramientas de IA generativa (Matlab Copilot) en el proceso de desarrollo.  
 
 ## JUSTIFICACIÓN
-El estudio de exoplanetas constituye uno de los campos más dinámicos de la astrofísica moderna, ya que permite comprender la formación y evolución de sistemas planetarios fuera del Sistema Solar. Sin embargo, la gran cantidad de datos disponibles en archivos astronómicos requiere herramientas computacionales que faciliten su análisis y visualización.
+El estudio de exoplanetas constituye uno de los campos más importantes de la astrofísica moderna, ya que permite comprender la formación y evolución de sistemas planetarios fuera del Sistema Solar, al encontrar patrones de comportamiento en común entre los sistemas planetarios.
 
-Este proyecto se justifica en la necesidad de aplicar técnicas de programación científica en MATLAB para integrar distintos enfoques:
+Este proyecto pretende integrar distintos enfoques que puede tener el estudio de sistemas planetarios, haciendo uso de programación en Matlab. Al combinar los enfoques de clasificación binaria, regresiones, análisis espectrales y visualización en diagramas, permite comprender claramente las características de las estrellas que posibilitan que se dé este fenómeno, al mezclar la estadística con el aprendizaje automático y la visualización científica. Así mismo, el enfoque de este proyecto abre la posibilidad de comprender cuáles son los modelos de análisis y procesamiento de datos más efectivos y precisos para estimar la presencia de planetas orbitando una estrella y su cantidad.  
 
-Clasificación binaria, que permite identificar qué estrellas tienen mayor probabilidad de albergar planetas.
-
-Regresión, que estima el número aproximado de planetas asociados a cada estrella.
-
-Análisis espectral y visualización HR, que relaciona los tipos de estrellas con la presencia de planetas y muestra su distribución en el diagrama Hertzsprung-Russell.
-
-La combinación de estos métodos ofrece una visión más completa y robusta del fenómeno, conectando estadística, aprendizaje automático y visualización científica. Además, fortalece competencias en programación, análisis de datos y modelado, alineadas con los objetivos formativos de la ingeniería mecatrónica.
+Por último, más allá de la temática del proyecto, al desarrollarlo se fortalecen competencias en programación, análisis de datos y modelado, alineadas con los objetivos formativos de la ingeniería mecatrónica.  
 
 ## DESARROLLO: SECCIONES DEL PROYECTO
 ### Estructura del proyecto
-Este proyecto se encuentra en una carpeta llamada `ProyectoFinal`. Dentro de ella, están los siguientes archivos:
+Este proyecto se encuentra en una carpeta llamada `ProyectoFinal`. Dentro de ella, están los siguientes archivos:  
 1. `funcion_principal.m`: Esta función es el "main" del proyecto, en ella se llaman todas las funciones secundarias para que corran en el orden en el que se desean obtener los resultados; presenta la estructura general del proyecto y realiza los análisis comparativos entre los modelos implementados en el proyecto.  
 2. `cargar_datos.m`: Función para realizar la carga de datos del archivo `datos_estrellas.xlsx` a dos matrices en Matlab, con las cuales se realizaría el posterior procesamiento de datos.  
 3. `clasificacion_binaria.m`: Función en la que se aplican los 4 métodos de clasificación binaria con los cuales se determinaría si una estrella tiene o no planeta(s).  
-4. `regresion_planetas.m`: Función en la que se aplican los 4 métodos de regresión con los cuales se determinaría la cantidad de planetas aproximada que tiene cada estrella.
-5. `analisis_tipos.m`: 
-6. `graficar_HR.m`:
-7. `datos_estrellas.xlsx`: Archivo de Excel con la base de datos completa descargada.
+4. `regresion_planetas.m`: Función en la que se aplican los 4 métodos de regresión con los cuales se determinaría la cantidad de planetas aproximada que tiene cada estrella.  
+5. `analisis_tipos.m`: Función en la que se realiza un análisis de datos generando gráficos de barras, diagramas H&R y analizando clusters en diagramas.  
+6. `graficar_HR.m`: Función que filtra las estrellas con planetas y las grafica en el diagrama Hertzsprung-Russell.  
+7. `datos_estrellas.xlsx`: Archivo de Excel con la base de datos completa descargada.  
 
-Archivos complementarios: 
+**Archivos complementarios:**
 1. `script_resultante.pdf`: El script generado por Matlab al correr el código completo, con los displays de una muestra de los resultados obtenidos en cada función y las gráficas.
 2. `prompts_Copilot.txt`: Un archivo de texto que contiene los prompts que se utilizaron en la inteligencia artificial Copilot para resolver problemas presentados en el desarrollo del proyecto.
 
@@ -50,8 +44,10 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
 
 1. Regresión logística - `fitglm`  
    Es un modelo estadístico que estima la probabilidad de que ocurra un evento binario en el que 1 es sí y 0 es no.  
+
    **Funcionamiento:**  
    Usa una función logística (sigmoide) para transformar una combinación lineal de variables predictoras en una probabilidad entre 0 y 1. Si la probabilidad es mayor a un umbral (0.5), clasifica como “1” (estrella con planetas), si no, clasifica como "0" (estrella sin planetas).  
+
    **Función** `fitglm` **:**  
    fitglm corresponde a la abreviación de Fit Generalized Linear Model.  
    Esta función ajusta un modelo lineal generalizado, calculando la probabilidad de que la respuesta sea 1 en función de las variables predictorias.  
@@ -64,8 +60,10 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
 
 2. Árbol de decisión - `fitctree`  
    Es un modelo que divide los datos en ramas según reglas simples.  
+
    **Funcionamiento:**  
    Construye un árbol donde cada nodo representa una condición sobre una variable, las hojas del árbol representan la clasificación final (planetas sí/no).  
+
    **Función** `fitctree` **:**  
    fitctree corresponde a la abreviación de Fit Classification Tree.  
    Esta función entrena un árbol de decisión para clasificación, dividiendo los datos en ramas según condiciones sobre las variables predictoras, hasta llegar a hojas que representan la clase final.  
@@ -76,8 +74,10 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
 
 3. k-Nearest Neighbors (KNN) - `fitcknn`  
    Es un modelo basado en la similitud entre observaciones.  
+
    **Funcionamiento:**  
    Para clasificar una estrella, busca las k estrellas más cercanas en el espacio de variables predictoras, y clasifica según la mayoría de esas vecinas (ejemplo: si 4 de 5 vecinas tienen planetas, se predice “con planetas”).  
+
    **Función** `fitcknn` **:**  
    fitcknn corresponde a la abreviación de Fit Classification k-Nearest Neighbors.  
    Esta función entrena un modelo de vecinos más cercanos; para clasificar un punto nuevo, busca los k puntos más cercanos en el conjunto de entrenamiento y asigna la clase mayoritaria.  
@@ -85,14 +85,17 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
 
 4. Support Vector Machines (SVM) - `fitcsvm`  
    Es un modelo que busca el “mejor hiperplano” que separa las dos clases.  
+
    **Funcionamiento:**  
    Encuentra una frontera que maximiza la distancia entre las clases (estrella con planetas vs. sin planetas). A continuación, haciendo uso de kernels maneja separaciones no lineales.  
+
    **Función** `fitcsvm` **:**  
    fitcsvm corresponde a la abreviación de Fit Classification Support Vector Machine.  
    Esta función entrena un SVM para clasificación binaria; encuentra el hiperplano que mejor separa las dos clases, y con `KernelFunction`,`rbf`, permite separar datos no lineales usando un kernel radial.  
    En este caso, la salida de la función es un objeto SVM (variable `mdl_svm`) que clasifica nuevos datos con predict.  
 
-**RETORNO DE LA FUNCIÓN:** En la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`, la cual se calcula como un valor de precisión entre 0 y 1.  
+
+**RETORNO DE LA FUNCIÓN:** En la función `clasificacion_binaria` se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`, la cual se calcula como un valor de precisión entre 0 y 1.  
 ``` Matlab
 resultados = clasificacion_binaria(T, y);
 ```
@@ -101,50 +104,44 @@ resultados = clasificacion_binaria(T, y);
 
 1. Regresión lineal múltiple - `fitlm`  
    Este método ajusta una relación lineal entre las variables predictoras (ej. masa, metalicidad, luminosidad) y la variable respuesta (número de planetas).  
+
    **Función** `fitlm` **:**
    fitlm corresponde a la abreviación de Fit Linear Model.  
    Esta función ajusta un modelo de regresión lineal múltiple, y se utiliza para relacionar una variable numérica con varias variables predictoras.  
    En este caso, la salida de la función es un objeto de tipo LinearModel que contiene los coeficientes, estadísticas y permite hacer predicciones con predict.  
 
 2. Regresión polinómica  
-   Extiende la regresión lineal agregando términos polinómicos para capturar relaciones no lineales, se lleva a cabo porque las estrellas más    masivas tienden a tener más planetas hasta cierto límite.  
+   Extiende la regresión lineal agregando términos polinómicos para capturar relaciones no lineales, se lleva a cabo porque las estrellas más masivas tienden a tener más planetas hasta cierto límite.  
 
 3. Random Forest Regressor - `TreeBagger`  
    Este método entrena muchos árboles de decisión y promedia sus predicciónes, capturando relaciones complejas para reducir el sobreajuste de un solo árbol.  
+
    **Función** `TreeBagger` **:**  
    Esta función entrena un conjunto de árboles de decisión (bosque aleatorio) y promedia sus resultados para regresión, capturando así relaciones complejas y no lineales entre las variables predictoras y la respuesta.  
    En este caso, la salida de la función es un objeto TreeBagger que guarda todos los árboles y permite hacer predicciones con predict.  
 
 4. Redes neuronales - `fitnet`  
    Este método es el modelo más avanzado que puede aprender patrones no lineales complejos. Se entrena con capas ocultas y neuronas, por lo cual al implementarlo se demostrará si la cantidad de datos de la base de datos es suficiente, con base en la precisión que tenga al detectar la cantidad de planetas que tiene cada estrella al realizar la comparación con los valores de la base de datos.  
+
    **Función** `fitnet` **:**  
    fitnet corresponde a la abreviación de Fit Neural Network.  
    Esta función entrena una red neuronal feedforward para regresión o clasificación, modelando relaciones no lineales complejas entre las variables predictoras y la respuesta.  
    En este caso, la salida de la función es un objeto network que contiene la arquitectura de la red (capas, neuronas, pesos) y permite hacer predicciones con net(X).  
 
-**RETORNO DE LA FUNCIÓN:**
-El RMSE (Root Mean Squared Error) es una métrica estándar para evaluar modelos de regresión.
+**RETORNO DE LA FUNCIÓN:** Un valor de RMSE (Root Mean Squared Error) para cada modelo de regresión. Este se obtiene dentro de la función con base en el resultado de planetas obtenido para cada modelo y el número de planetas correspondiente en la base de datos (valor teórico), a partir del cual se determina la lejanía o desfase de cantidad de planetas que tiene el modelo experimental, en promedio, con respecto al modelo teórico.
 
-Mide el promedio del error cuadrático entre lo real y lo predicho.
+*RMSE:* El RMSE mide el promedio del error cuadrático entre lo real y lo predicho. Un RMSE más bajo significa que el modelo predice más cerca de los valores reales.
 
-Al tomar la raíz cuadrada, se expresa en las mismas unidades que la variable objetivo (en este caso, número de planetas).
+### 4. ANÁLISIS POR TIPO DE ESTRELLA
+En esta sección, se generaron 3 diagramas para determinar y analizar las relaciones que presentan distintas variables.
 
-Un RMSE más bajo significa que el modelo predice más cerca de los valores reales.
+1. Gráfico de barras: *Tasa de planetas por tipo espectral*
+   Muestra qué tipos espectrales presentan mayor proporción de estrellas con planetas, en un diagrama cuyo eje x contiene los tipos espectrales y el eje y presenta la proporción de estrellas con planetas.
+2. Diagrama H&R: *Diagrama HR (coloreado por presencia de planetas)*
+   
+3. Clustering: *Clusters de estrellas (k-means)*
 
-Ventaja:
-
-Penaliza más los errores grandes (porque se elevan al cuadrado).
-
-Es intuitivo: si el RMSE = 1.2, significa que en promedio el modelo se equivoca por ~1.2 planetas.
-
-📌 ¿Por qué se compara con RMSE?
-El RMSE (Root Mean Squared Error) mide el error promedio entre los valores reales y los predichos.
-
-Se expresa en las mismas unidades que la variable objetivo (en este caso, número de planetas).
-
-Penaliza más los errores grandes, lo que lo hace una métrica sensible y confiable para comparar modelos de regresión.
-
-El modelo con menor RMSE es el que mejor aproxima la cantidad de planetas.
+### 5. DIAGRAMA HERTZSPRUNG-RUSSELL DE SISTEMAS PLANETARIOS
 
 
 ## RESULTADOS
@@ -229,8 +226,9 @@ Conclusión: El HR filtrado es la evidencia visual más clara de dónde se encue
 ## REFLEXIÓN SOBRE IA
 ### Implementación de la IA en el proyecto
 
-### Prompts utilizados con Copilot
 
+### Prompts utilizados con Copilot
+En el archivo titulado `prompts_Copilot.txt` se encuentran todos los prompts enviados a esta inteligencia artificial generativa con el objetivo de recibir ayuda para realizar los análisis, arreglar errores y resolver dudas en el proceso de desarrollo del proyecto, la implementación de las clasificaciones, regresiones y gráficas.
 
 ## CONCLUSIONES
 Integración de métodos computacionales: El proyecto logró combinar técnicas de clasificación, regresión y análisis espectral en MATLAB, lo que permitió abordar el problema de la inferencia de exoplanetas desde diferentes perspectivas complementarias.
