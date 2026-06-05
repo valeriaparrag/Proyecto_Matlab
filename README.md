@@ -10,7 +10,17 @@ Posteriormente, se realiza un estudio de los tipos espectrales de estrellas, exp
 El proyecto se implementa en Matlab, e integra importación y limpieza de datos, funciones modulares, visualizaciones 2D y 3D, clustering estadístico y dashboards interactivos. Por último, se realiza una reflexión crítica sobre el uso de herramientas de IA generativa (MATLAB Copilot) en el proceso de desarrollo.
 
 ## JUSTIFICACIÓN
+El estudio de exoplanetas constituye uno de los campos más dinámicos de la astrofísica moderna, ya que permite comprender la formación y evolución de sistemas planetarios fuera del Sistema Solar. Sin embargo, la gran cantidad de datos disponibles en archivos astronómicos requiere herramientas computacionales que faciliten su análisis y visualización.
 
+Este proyecto se justifica en la necesidad de aplicar técnicas de programación científica en MATLAB para integrar distintos enfoques:
+
+Clasificación binaria, que permite identificar qué estrellas tienen mayor probabilidad de albergar planetas.
+
+Regresión, que estima el número aproximado de planetas asociados a cada estrella.
+
+Análisis espectral y visualización HR, que relaciona los tipos de estrellas con la presencia de planetas y muestra su distribución en el diagrama Hertzsprung-Russell.
+
+La combinación de estos métodos ofrece una visión más completa y robusta del fenómeno, conectando estadística, aprendizaje automático y visualización científica. Además, fortalece competencias en programación, análisis de datos y modelado, alineadas con los objetivos formativos de la ingeniería mecatrónica.
 
 ## DESARROLLO: SECCIONES DEL PROYECTO
 ### Estructura del proyecto
@@ -189,6 +199,17 @@ Comparación de RMSE entre modelos de regresión:
 
 
 ## CONCLUSIONES
+Integración de métodos computacionales: El proyecto logró combinar técnicas de clasificación, regresión y análisis espectral en MATLAB, lo que permitió abordar el problema de la inferencia de exoplanetas desde diferentes perspectivas complementarias.
+
+Clasificación binaria: Se implementaron cuatro modelos (Regresión Logística, Árbol de Decisión, KNN y SVM) para identificar estrellas con planetas. La comparación de métricas mostró que algunos métodos ofrecen mayor precisión, evidenciando la importancia de evaluar distintos enfoques antes de seleccionar el más adecuado.
+
+Regresión para estimación de planetas: El uso de modelos lineales, polinómicos, Random Forest y redes neuronales permitió aproximar el número de planetas por estrella. La comparación mediante RMSE demostró que los modelos no lineales capturan mejor las relaciones complejas entre las variables estelares y la cantidad de planetas.
+
+Análisis por tipo espectral: Se evidenció que ciertos tipos de estrellas presentan mayor proporción de planetas, y el diagrama HR filtrado mostró tendencias claras en la distribución de estrellas con planetas, reforzando la conexión entre clasificación, regresión y análisis espectral.
+
+Visualización científica: Los diagramas HR y los gráficos comparativos facilitaron la interpretación de los resultados, mostrando patrones que no serían evidentes únicamente con valores numéricos.
+
+Valor académico y científico: El proyecto no solo fortaleció competencias en programación y análisis de datos, sino que también aportó una visión más sólida sobre cómo la computación aplicada puede apoyar la investigación astronómica, integrando estadística, aprendizaje automático y visualización.
 
 ## REFERENCIAS
 **BASE DE DATOS:**  
