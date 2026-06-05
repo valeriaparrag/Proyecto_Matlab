@@ -145,7 +145,7 @@ Salida: Un objeto network que contiene la arquitectura de la red (capas, neurona
 ### 2. Clasificación binaria
 ``` Matlab
 Comparación de precisión entre modelos:
-            Modelo             Accuracy
+            Modelo             Precisión
     _______________________    ________
 
     {'Regresión Logística'}    0.79878 
@@ -162,6 +162,14 @@ Comparación de precisión entre modelos:
 ## CONCLUSIONES
 
 ## REFERENCIAS
+**BASE DE DATOS:**
+[1] NASA Exoplanet Archive, “Directly Imaged Stars and Exoplanets (DI_STARS_EXEP),” California Institute of Technology, Pasadena, CA, USA. [Online]. Available: https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=DI_STARS_EXEP. [Accessed: 04-Jun-2026]. :contentReference[oaicite:0]{index=0}
+
+[2] J. A. Johnson, K. M. Aller, A. W. Howard, and J. R. Crepp, “Giant Planet Occurrence in the Stellar Mass-Metallicity Plane,” Publications of the Astronomical Society of the Pacific, vol. 122, no. 894, pp. 905–915, Aug. 2010, doi: 10.1086/655775. :contentReference[oaicite:1]{index=1}
+
+[3] D. A. Fischer and J. Valenti, “The Planet-Metallicity Correlation,” The Astrophysical Journal, vol. 622, no. 2, pp. 1102–1117, Apr. 2005, doi: 10.1086/428383. :contentReference[oaicite:2]{index=2}
+
+[4] W. Dunham, “Planet-forming disk around small star offers big surprises,” Reuters, Jun. 06, 2024. [Online]. Available: https://www.reuters.com/science/planet-forming-disk-around-small-star-offers-big-surprises-2024-06-06/. [Accessed: 04-Jun-2026].
 
 ## AUTORA
 Valeria Andrea Parra García - valeriaparrag@javeriana.edu.co
