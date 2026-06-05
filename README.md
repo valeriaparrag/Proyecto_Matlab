@@ -15,15 +15,16 @@ El proyecto se implementa en Matlab, e integra importación y limpieza de datos,
 ## DESARROLLO: SECCIONES DEL PROYECTO
 ### Estructura del proyecto
 Este proyecto se encuentra en una carpeta llamada `ProyectoFinal`. Dentro de ella, están los siguientes archivos:
-1. `funcion_principal.m`: Esta función es el "main" del proyecto, en ella se llaman todas las funciones secundarias para que corran en el orden en el que se desean obtener los resultados; presenta la estructura general del proyecto y realiza los análisis comparativos entre los modelos implementados en el proyecto. 
-2. `cargar_datos.m`: Función para realizar la carga de datos del archivo `datos_estrellas.xlsx` a dos matrices en Matlab, con las cuales se realizaría el posterior procesamiento de datos. 
-3. `clasificacion_binaria.m`: Función en la que se aplican los 4 métodos de clasificación binaria con los cuales se determinaría si una estrella tiene o no planeta(s). 
-4. `regresion_planetas.m`:
-5. `graficar_HR.m`:
-6. `datos_estrellas.xlsx`: Archivo de Excel con la base de datos completa descargada.
+1. `funcion_principal.m`: Esta función es el "main" del proyecto, en ella se llaman todas las funciones secundarias para que corran en el orden en el que se desean obtener los resultados; presenta la estructura general del proyecto y realiza los análisis comparativos entre los modelos implementados en el proyecto.  
+2. `cargar_datos.m`: Función para realizar la carga de datos del archivo `datos_estrellas.xlsx` a dos matrices en Matlab, con las cuales se realizaría el posterior procesamiento de datos.  
+3. `clasificacion_binaria.m`: Función en la que se aplican los 4 métodos de clasificación binaria con los cuales se determinaría si una estrella tiene o no planeta(s).  
+4. `regresion_planetas.m`: Función en la que se aplican los 4 métodos de regresión con los cuales se determinaría la cantidad de planetas aproximada que tiene cada estrella.
+5. `analisis_tipos.m`: 
+6. `graficar_HR.m`:
+7. `datos_estrellas.xlsx`: Archivo de Excel con la base de datos completa descargada.
 
 Archivos complementarios: 
-1. `script_resultante.pdf`: El script generado por Matlab al correr el código completo 
+1. `script_resultante.pdf`: El script generado por Matlab al correr el código completo, con los displays de una muestra de los resultados obtenidos en cada función y las gráficas.
 
 ### 1. Carga de datos
 En la primera sección, denominada carga de datos, se implementó la función `cargar_datos.m` para subir el archivo de Excel que contiene la totalidad de los datos descargados de la base de datos NASA Exoplanet Archive [1] (la cual se encuentra en referencias), de manera que se crearan dos matrices:  
@@ -111,6 +112,28 @@ resultados = clasificacion_binaria(T, y);
    En este caso, la salida de la función es un objeto network que contiene la arquitectura de la red (capas, neuronas, pesos) y permite hacer predicciones con net(X).  
 
 **RETORNO DE LA FUNCIÓN:**
+El RMSE (Root Mean Squared Error) es una métrica estándar para evaluar modelos de regresión.
+
+Mide el promedio del error cuadrático entre lo real y lo predicho.
+
+Al tomar la raíz cuadrada, se expresa en las mismas unidades que la variable objetivo (en este caso, número de planetas).
+
+Un RMSE más bajo significa que el modelo predice más cerca de los valores reales.
+
+Ventaja:
+
+Penaliza más los errores grandes (porque se elevan al cuadrado).
+
+Es intuitivo: si el RMSE = 1.2, significa que en promedio el modelo se equivoca por ~1.2 planetas.
+
+📌 ¿Por qué se compara con RMSE?
+El RMSE (Root Mean Squared Error) mide el error promedio entre los valores reales y los predichos.
+
+Se expresa en las mismas unidades que la variable objetivo (en este caso, número de planetas).
+
+Penaliza más los errores grandes, lo que lo hace una métrica sensible y confiable para comparar modelos de regresión.
+
+El modelo con menor RMSE es el que mejor aproxima la cantidad de planetas.
 
 
 ## RESULTADOS
