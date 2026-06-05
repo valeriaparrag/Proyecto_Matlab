@@ -1,14 +1,13 @@
 # Cartografía Estelar de Exoplanetas: Inferencia y Visualización en MATLAB
 ## DESCRIPCIÓN DEL PROYECTO  
-Este proyecto aplica técnicas de procesamiento de datos, clasificación estadística y visualización científica para analizar un conjunto de estrellas del NASA Exoplanet Archive. A partir de parámetros físicos como masa, metalicidad, luminosidad, amplitud radial y actividad cromosférica, se desarrolla un sistema de inferencia de planetas dividido en dos enfoques complementarios:
+Este proyecto aplica técnicas de procesamiento de datos, clasificación estadística y visualización científica para analizar un conjunto de estrellas de la base de datos NASA Exoplanet Archive. A partir de parámetros físicos como masa, metalicidad, luminosidad, amplitud radial y actividad cromosférica, se desarrolla un sistema de inferencia de presencia planetas dividido en dos partes:
 
-Clasificación binaria: predicción de la presencia o ausencia de planetas mediante métodos estadísticos y de aprendizaje supervisado (regresión logística, árboles de decisión, SVM).
+1. Clasificación binaria: Predicción de la presencia o ausencia de planetas mediante métodos estadísticos y de aprendizaje supervisado (regresión logística, árboles de decisión, SVM).
+2. Regresión: Estimación del número potencial de planetas asociados a cada estrella utilizando modelos de regresión lineal, polinómica y ensambles como Random Forest.
 
-Regresión: estimación del número potencial de planetas asociados a cada estrella utilizando modelos de regresión lineal, polinómica y ensambles como Random Forest.
+Posteriormente, se realiza un estudio de los tipos espectrales de estrellas, explorando la relación entre clase estelar y probabilidad de albergar sistemas planetarios. Además, se construyen diagramas de Hertzsprung-Russell (HR), tanto generales como filtrados para estrellas con planetas, con el fin de identificar las regiones del diagrama donde se concentran los sistemas planetarios con mayor frecuencia.
 
-El análisis se complementa con un estudio de los tipos espectrales de estrellas, explorando la relación entre clase estelar y probabilidad de albergar sistemas planetarios. Además, se construyen diagramas de Hertzsprung-Russell (HR), tanto generales como filtrados para estrellas con planetas, con el fin de identificar las regiones del diagrama donde se concentran los sistemas planetarios más frecuentes.
-
-La implementación se realiza en MATLAB, integrando importación y limpieza de datos, funciones modulares, visualizaciones 2D y 3D, clustering estadístico y dashboards interactivos. El proyecto culmina con un Live Script documentado, que incluye reflexión crítica sobre el uso de herramientas de IA generativa (MATLAB Copilot) en el proceso de desarrollo.
+El proyecto se implementa en Matlab, e integra importación y limpieza de datos, funciones modulares, visualizaciones 2D y 3D, clustering estadístico y dashboards interactivos. Por último, se realiza una reflexión crítica sobre el uso de herramientas de IA generativa (MATLAB Copilot) en el proceso de desarrollo.
 
 ## JUSTIFICACIÓN
 
@@ -22,6 +21,9 @@ Este proyecto se encuentra en una carpeta llamada `ProyectoFinal`. Dentro de ell
 4. `regresion_planetas.m`:
 5. `graficar_HR.m`:
 6. `datos_estrellas.xlsx`: Archivo de Excel con la base de datos completa descargada.
+
+Archivos complementarios: 
+1. `script_resultante.pdf`: El script generado por Matlab al correr el código completo 
 
 ### 1. Carga de datos
 En la primera sección, denominada carga de datos, se implementó la función `cargar_datos.m` para subir el archivo de Excel que contiene la totalidad de los datos descargados de la base de datos NASA Exoplanet Archive [1] (la cual se encuentra en referencias), de manera que se crearan dos matrices:  
@@ -78,7 +80,7 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    Esta función entrena un SVM para clasificación binaria; encuentra el hiperplano que mejor separa las dos clases, y con `KernelFunction`,`rbf`, permite separar datos no lineales usando un kernel radial.  
    En este caso, la salida de la función es un objeto SVM (variable `mdl_svm`) que clasifica nuevos datos con predict.  
 
-**RETORNO DE LA FUNCIÓN:** en la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`, la cual se calcula como un valor de precisión entre 0 y 1.  
+**RETORNO DE LA FUNCIÓN:** En la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`, la cual se calcula como un valor de precisión entre 0 y 1.  
 ``` Matlab
 resultados = clasificacion_binaria(T, y);
 ```
@@ -86,7 +88,7 @@ resultados = clasificacion_binaria(T, y);
 ### 3. Regresión: cantidad estimada de planetas  
 
 1. Regresión lineal múltiple - `fitlm`  
-   Ajusta una relación lineal entre las variables predictoras (ej. masa, metalicidad, luminosidad) y la variable respuesta (número de planetas).  
+   Este método ajusta una relación lineal entre las variables predictoras (ej. masa, metalicidad, luminosidad) y la variable respuesta (número de planetas).  
    **Función** `fitlm` **:**
    fitlm corresponde a la abreviación de Fit Linear Model.  
    Esta función ajusta un modelo de regresión lineal múltiple, y se utiliza para relacionar una variable numérica con varias variables predictoras.  
@@ -96,31 +98,20 @@ resultados = clasificacion_binaria(T, y);
    Extiende la regresión lineal agregando términos polinómicos para capturar relaciones no lineales, se lleva a cabo porque las estrellas más    masivas tienden a tener más planetas hasta cierto límite.  
 
 3. Random Forest Regressor - `TreeBagger`  
+   Este método entrena muchos árboles de decisión y promedia sus predicciónes, capturando relaciones complejas para reducir el sobreajuste de un solo árbol.  
+   **Función** `TreeBagger` **:**  
+   Esta función entrena un conjunto de árboles de decisión (bosque aleatorio) y promedia sus resultados para regresión, capturando así relaciones complejas y no lineales entre las variables predictoras y la respuesta.  
+   En este caso, la salida de la función es un objeto TreeBagger que guarda todos los árboles y permite hacer predicciones con predict.  
 
-Entrena muchos árboles de decisión y promedia sus predicciones.
+4. Redes neuronales - `fitnet`  
+   Este método es el modelo más avanzado que puede aprender patrones no lineales complejos. Se entrena con capas ocultas y neuronas, por lo cual al implementarlo se demostrará si la cantidad de datos de la base de datos es suficiente, con base en la precisión que tenga al detectar la cantidad de planetas que tiene cada estrella al realizar la comparación con los valores de la base de datos.  
+   **Función** `fitnet` **:**  
+   fitnet corresponde a la abreviación de Fit Neural Network.  
+   Esta función entrena una red neuronal feedforward para regresión o clasificación, modelando relaciones no lineales complejas entre las variables predictoras y la respuesta.  
+   En este caso, la salida de la función es un objeto network que contiene la arquitectura de la red (capas, neuronas, pesos) y permite hacer predicciones con net(X).  
 
-Captura relaciones complejas y reduce el sobreajuste de un solo árbol.
+**RETORNO DE LA FUNCIÓN:**
 
-
-
-Nombre completo: Tree Bagger (Random Forest).
-
-Qué hace: Entrena un conjunto de árboles de decisión (bosque aleatorio) y promedia sus resultados para regresión.
-
-Uso típico: Captura relaciones complejas y no lineales entre las variables predictoras y la respuesta.
-
-Salida: Un objeto TreeBagger que guarda todos los árboles y permite hacer predicciones con predict.
-
-6. Redes neuronales - `fitnet`  
-
-
-Nombre completo: Fit Neural Network.
-
-Qué hace: Entrena una red neuronal feedforward para regresión o clasificación.
-
-Uso típico: Modela relaciones no lineales muy complejas entre las variables predictoras y la respuesta.
-
-Salida: Un objeto network que contiene la arquitectura de la red (capas, neuronas, pesos) y permite hacer predicciones con net(X).
 
 ## RESULTADOS
 
@@ -143,6 +134,7 @@ Salida: Un objeto network que contiene la arquitectura de la red (capas, neurona
 ```
 
 ### 2. Clasificación binaria
+
 ``` Matlab
 Comparación de precisión entre modelos:
             Modelo             Precisión
@@ -154,22 +146,36 @@ Comparación de precisión entre modelos:
     {'SVM'                }    0.81707
 ```
 
+### Regresión: Cantidad estimada de planetas
+
+``` Matlab
+Comparación de RMSE entre modelos de regresión:
+         Modelo           RMSE  
+    _________________    _______
+
+    {'Lineal'       }      1.012
+    {'Polinómica'   }     1.0093
+    {'Random Forest'}    0.81631
+    {'Red Neuronal' }     1.0594
+```
+
 ## REFLEXIÓN SOBRE IA
 ### Implementación de la IA en el proyecto
 
 ### Prompts utilizados con Copilot
 
+
 ## CONCLUSIONES
 
 ## REFERENCIAS
-**BASE DE DATOS:**
-[1] NASA Exoplanet Archive, “Directly Imaged Stars and Exoplanets (DI_STARS_EXEP),” California Institute of Technology, Pasadena, CA, USA. [Online]. Available: https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=DI_STARS_EXEP. [Accessed: 04-Jun-2026]. :contentReference[oaicite:0]{index=0}
+**BASE DE DATOS:**  
+[1] NASA Exoplanet Archive, “Directly Imaged Stars and Exoplanets (DI_STARS_EXEP),” California Institute of Technology, Pasadena, CA, USA. [Online]. Available: https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=DI_STARS_EXEP. [Accessed: 04-Jun-2026]. :contentReference[oaicite:0]{index=0}  
 
-[2] J. A. Johnson, K. M. Aller, A. W. Howard, and J. R. Crepp, “Giant Planet Occurrence in the Stellar Mass-Metallicity Plane,” Publications of the Astronomical Society of the Pacific, vol. 122, no. 894, pp. 905–915, Aug. 2010, doi: 10.1086/655775. :contentReference[oaicite:1]{index=1}
+[2] J. A. Johnson, K. M. Aller, A. W. Howard, and J. R. Crepp, “Giant Planet Occurrence in the Stellar Mass-Metallicity Plane,” Publications of the Astronomical Society of the Pacific, vol. 122, no. 894, pp. 905–915, Aug. 2010, doi: 10.1086/655775. :contentReference[oaicite:1]{index=1}  
 
-[3] D. A. Fischer and J. Valenti, “The Planet-Metallicity Correlation,” The Astrophysical Journal, vol. 622, no. 2, pp. 1102–1117, Apr. 2005, doi: 10.1086/428383. :contentReference[oaicite:2]{index=2}
+[3] D. A. Fischer and J. Valenti, “The Planet-Metallicity Correlation,” The Astrophysical Journal, vol. 622, no. 2, pp. 1102–1117, Apr. 2005, doi: 10.1086/428383. :contentReference[oaicite:2]{index=2}  
 
-[4] W. Dunham, “Planet-forming disk around small star offers big surprises,” Reuters, Jun. 06, 2024. [Online]. Available: https://www.reuters.com/science/planet-forming-disk-around-small-star-offers-big-surprises-2024-06-06/. [Accessed: 04-Jun-2026].
+[4] W. Dunham, “Planet-forming disk around small star offers big surprises,” Reuters, Jun. 06, 2024. [Online]. Available: https://www.reuters.com/science/planet-forming-disk-around-small-star-offers-big-surprises-2024-06-06/. [Accessed: 04-Jun-2026].  
 
 ## AUTORA
 Valeria Andrea Parra García - valeriaparrag@javeriana.edu.co
