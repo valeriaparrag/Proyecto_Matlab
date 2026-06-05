@@ -1,0 +1,22 @@
+1.	Soy estudiante de mecatrónica haciendo un proyecto final para la asignatura de Matlab. descargué esta base de datos del nasa exoplanet archive, y necesito saber qué proyecto puedo realizar que tenga procesamiento y análisis de datos, o realización de gráficos con algunos o varios de estos datos. especialmente me gustaría eliminar la bandera de planetas y el número de planetas que contiene, y por alguno o varios métodos hacer los cálculos y el análisis yo misma a partir de otros datos en la base para saber cuáles datos de estrellas sí contienen planetas y luego hacer gráficos de esto te parece posible y viable? también me gustaría hacer un diagrama de hertzprung Russell y otros que demuestren los clusters o puntos en común entre cosas encontradas entre las estrellas. porfis ayúdame a planear el proyecto https://exoplanetarchive.ipac.caltech.edu/cgi-bin/TblView/nph-tblView?app=ExoTbls&config=DI_STARS_EXEP
+Teniendo en cuenta lo que vimos en el syllabus del curso, ayúdame a completar más el proyecto, hacerlo más robusto y no tan simple.
+
+2.	Okey para la parte de inferencia de planetas, quiero dividirla en dos: - clasificación binaria - regresión la primera con base en si hay o no planetas, la segunda con base en la cantidad estimada de planetas que puede tener cada estrella. qué métodos puedo usar para cada una de las dos? también me gustaría hacer algún análisis en relación con los tipos de estrella, no sé qué pueda ser, si lo pueda relacionar con esto de arriba y con el h&r o algún otro tema. podría hacer un h&r específicamente de las estrellas que sí tienen planetas a ver en qué zonas están encontradas mayormente?
+
+3.	Si quiero agregarle funciones secundarias a mi proyecto, las cuales puedo llamar en el main para ejecutarlas, ¿cuáles consideras pertinente tener aparte de una para cargar y limpiar el archivo csv que estoy subiendo? Para esto ten en cuenta la estructura del proyecto que ya establecí: 
+1.	Clasificación binaria
+2.	Regresión
+3.	Análisis por tipos de estrella
+4.	Diagrama H&R de las estrellas que sí tienen planetas
+
+4.	Si quiero hacer la función secundaria para llamar en el script principal con los 4 métodos de clasificación binaria que voy a usar, pero que retorne de una los resultados obtenidos de los 4 métodos, ¿Qué tipo de variable puedo usar y cómo la puedo implementar?
+
+5.	¿Cómo hago la carga de datos si quiero que por un lado me queden los datos limpios, y por el otro, quiero una matriz que contenga solo los nombres de las estrellas, la bandera de si tienen planetas o no y la cantidad, para después hacer un análisis estadístico de qué método fue más cercano a los resultados teóricos de la base de datos?
+
+6.	Me están saliendo estos errores al intentar hacer la carga de datos:
+Error using . (line 236) Unrecognized table variable name 'Sy Planets Flag'. Error in cargar_datos (line 16) MatrizValidacion = table(string(T.Hostname), T.('Sy Planets Flag'), T.('Sy Pnum'), ... Error in funcion_principal (line 12) [T, MatrizValidacion] = cargar_datos('datos_estrellas.xlsx');
+¿Cómo puedo saber de qué manera están escritas las variables en el Excel importado y si Matlab les está cambiando el nombre al importar el dataset? ¿Por favor me ayudas a plantear el código para asegurarme de que no haya errores?
+
+7.	Por favor explícame cómo funcionan los 4 tipos de clasificaciones binarias que voy a usar: regresión logística, árboles de decisión, KNN y SVM. Así mismo, explícame qué son, cuál es la salida, y cómo se implementan cada una de las funciones correspondientes a estas clasificaciones binarias: fitglm, fitctree, fitcknn y fitcsvm
+
+8.	Al crear la figura 1 para la sección de análisis de estrellas, la letra de cada estrella me sale extremadamente grande, ¿Qué debo agregarle al código para evitar esto?
