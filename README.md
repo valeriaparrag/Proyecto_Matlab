@@ -78,7 +78,7 @@ Posteriormente, se realizó una comparación con los datos de "Planets Flag" de 
    Esta función entrena un SVM para clasificación binaria; encuentra el hiperplano que mejor separa las dos clases, y con `KernelFunction`,`rbf`, permite separar datos no lineales usando un kernel radial.  
    En este caso, la salida de la función es un objeto SVM (variable `mdl_svm`) que clasifica nuevos datos con predict.  
 
-**RETORNO DE LA FUNCIÓN: ** en la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`, la cual se calcula como un valor de precisión entre 0 y 1.  
+**RETORNO DE LA FUNCIÓN:** en la función se retorna resultados, una estructura que contiene cada modelo entrenado (objeto que guarda parámetros, coeficientes, etc.) en `T` y las predicciones que ese modelo hizo sobre los datos de entrada en `y`, la cual se calcula como un valor de precisión entre 0 y 1.  
 ``` Matlab
 resultados = clasificacion_binaria(T, y);
 ```
@@ -86,12 +86,41 @@ resultados = clasificacion_binaria(T, y);
 ### 3. Regresión: cantidad estimada de planetas  
 
 1. Regresión lineal múltiple - `fitlm`  
+   Ajusta una relación lineal entre las variables predictoras (ej. masa, metalicidad, luminosidad) y la variable respuesta (número de planetas).  
+   **Función** `fitlm` **:**
+   fitlm corresponde a la abreviación de Fit Linear Model.  
+   Esta función ajusta un modelo de regresión lineal múltiple, y se utiliza para relacionar una variable numérica con varias variables predictoras.  
+   En este caso, la salida de la función es un objeto de tipo LinearModel que contiene los coeficientes, estadísticas y permite hacer predicciones con predict.  
 
 2. Regresión polinómica  
+   Extiende la regresión lineal agregando términos polinómicos para capturar relaciones no lineales, se lleva a cabo porque las estrellas más    masivas tienden a tener más planetas hasta cierto límite.  
 
 3. Random Forest Regressor - `TreeBagger`  
 
-4. Redes neuronales - `fitnet`  
+Entrena muchos árboles de decisión y promedia sus predicciones.
+
+Captura relaciones complejas y reduce el sobreajuste de un solo árbol.
+
+
+
+Nombre completo: Tree Bagger (Random Forest).
+
+Qué hace: Entrena un conjunto de árboles de decisión (bosque aleatorio) y promedia sus resultados para regresión.
+
+Uso típico: Captura relaciones complejas y no lineales entre las variables predictoras y la respuesta.
+
+Salida: Un objeto TreeBagger que guarda todos los árboles y permite hacer predicciones con predict.
+
+6. Redes neuronales - `fitnet`  
+
+
+Nombre completo: Fit Neural Network.
+
+Qué hace: Entrena una red neuronal feedforward para regresión o clasificación.
+
+Uso típico: Modela relaciones no lineales muy complejas entre las variables predictoras y la respuesta.
+
+Salida: Un objeto network que contiene la arquitectura de la red (capas, neuronas, pesos) y permite hacer predicciones con net(X).
 
 ## RESULTADOS
 
