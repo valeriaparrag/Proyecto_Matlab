@@ -208,17 +208,17 @@ Con este modelo de error, fue posible determinar que Random Forest fue el modelo
 ### 4. Análisis por tipo de estrella
 
 Figura 1 (barras de proporción de planetas por tipo espectral):
-Mostró que ciertos tipos (ej. G y K) tienen mayor proporción de estrellas con planetas.
+Mostró que ciertos tipos (ej. G y K) tienen mayor proporción de estrellas con planetas.  
 ![Tasa_planetas_por_tipo](figuras_funciones/tasa_planetas_por_tipo.png)
 
 Figura 2 (HR diagram general):
-Visualizó todas las estrellas, coloreadas por presencia de planetas. Se observó concentración en la secuencia principal.
-TODAS LAS ESTRELLAS SE ENCUENTRAN EN LA SECUENCIA PRINCIPAL, NO SON GIGANTES NI SUPERGIGANTES, NI TAMPOCO ENANAS BLANCAS
+Visualizó todas las estrellas, coloreadas por presencia de planetas. Se observó concentración en la secuencia principal, ya que ninguna de las estrellas se encontraba en las secciones de gigantes, supergigantes ni enanas blancas.
+TODAS LAS ESTRELLAS SE ENCUENTRAN EN LA SECUENCIA PRINCIPAL, NO SON GIGANTES NI SUPERGIGANTES, NI TAMPOCO ENANAS BLANCAS  
 
 ![diagrama_HR](figuras_funciones/diagrama_HR.png)
 
 Figura 3 (clusters con k-means):
-Agrupó estrellas por masa y luminosidad, mostrando que algunos clusters tienen más planetas, lo que sugiere patrones de formación.
+Agrupó estrellas por masa y luminosidad, mostrando que algunos clusters tienen más planetas, lo que sugiere patrones de formación.  
 
 ![clusters_estrellas](figuras_funciones/clusters_estrellas.png)
 
@@ -227,7 +227,7 @@ Con base en todo lo anterior, se determina que el análisis espectral confirmó 
 ### 5. Diagrama H&R de las estrellas con planetas
 
 Figura (HR filtrado):
-Mostró únicamente las estrellas con planetas. Se observó que la mayoría se concentran en la secuencia principal y en tipos espectrales intermedios (G, K).
+Mostró únicamente las estrellas con planetas. Se observó que la mayoría se concentran en la secuencia principal y en tipos espectrales intermedios (G, K).  
 
 ![diagramaHR_filtrado](figuras_funciones/diagramaHR_filtrado.png)
 
@@ -235,10 +235,13 @@ Esto conecta directamente con la clasificación binaria y el análisis espectral
 Con este diagrama, se determina que el HR filtrado es la evidencia visual más clara de dónde se encuentran las estrellas con planetas, ya que todas se encuentran en la secuencia principal.
 
 ### Vídeo de presentación del proyecto:
-
+[![Video](https://img.youtube.com/vi/0T_3Q1ju5B8/0.jpg)](https://youtu.be/0T_3Q1ju5B8 )
 
 ## REFLEXIÓN SOBRE IA
 ### Implementación de la IA en el proyecto
+En este proyecto, la inteligencia artificial se implementó con el fin de guiar el proceso de realización del proyecto, esclarecer dudas y explicar cómo utilizar todas las nuevas funciones y métodos que estaba aprendiendo a implementar, con el fin de utilizarlas adecuadamente.
+
+Así mismo, fue de gran ayuda para resolver errores en el código cuando alguna función era aplicada inadecuadamente o estaba incompleta, permitiendo encontrar dónde estaba el error y presentando posibles formas de resolverlo u optimizar el código, para asegurar el correcto desarrollo del proyecto.
 
 ### Prompts utilizados con Copilot
 En el archivo titulado `prompts_Copilot.txt` se encuentran todos los prompts enviados a esta inteligencia artificial generativa con el objetivo de recibir ayuda para realizar los análisis, arreglar errores y resolver dudas en el proceso de desarrollo del proyecto, la implementación de las clasificaciones, regresiones y gráficas.
@@ -263,4 +266,4 @@ En el análisis por tipo espectral fue posible evidenciar que ciertos tipos de e
 [4] W. Dunham, “Planet-forming disk around small star offers big surprises,” Reuters, Jun. 06, 2024. [Online]. Available: https://www.reuters.com/science/planet-forming-disk-around-small-star-offers-big-surprises-2024-06-06/. [Accessed: 04-Jun-2026].  
 
 ## AUTORA
-Valeria Andrea Parra García - valeriaparrag@javeriana.edu.co
+*Valeria Andrea Parra García* - valeriaparrag@javeriana.edu.co
